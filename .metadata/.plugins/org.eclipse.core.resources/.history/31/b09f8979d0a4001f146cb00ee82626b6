@@ -1,0 +1,16 @@
+package testing;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class chatgpt {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.google.com/search?q=chatgpt&rlz=1C1CHBF_enIN1115IN1115&oq=&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEEUYPDIGCAYQRRg80gEIMjIzM2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8");
+		driver.findElement(By.className("l"));
+
+	}
+
+}

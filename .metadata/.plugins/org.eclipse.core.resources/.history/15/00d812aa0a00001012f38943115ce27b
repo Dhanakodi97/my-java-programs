@@ -1,0 +1,25 @@
+package testNgBasic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class LearnDataProvider extends DataUtils{
+	
+	
+	@Test(dataProvider = "login" )
+	public void login(String usern, String pass) {
+		WebDriver driver = new ChromeDriver();
+		System.out.println(usern + " "+ pass);
+		driver.get("https://mpulse.co.in/login");
+		driver.findElement(By.name("username")).sendKeys(usern);
+		driver.findElement(By.name("password")).sendKeys(pass);
+		driver.findElement(By.name("login_form")).click();
+		String title = driver.getTitle();
+		System.out.println("The Title is" + title);
+		driver.quit();
+	}
+	
+
+}

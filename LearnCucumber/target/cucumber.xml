@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="207.561" tests="4" skipped="0" failures="1" errors="0" timestamp="2025-05-14T15:03:30.905033400Z">
+<testcase classname="Bookcart application demo" name="Add a product to the cart - #1.1" time="83.063">
+<failure type="java.lang.AssertionError" message="expected [true] but found [false]">
+<![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:1079)
+	at org.testng.Assert.assertEquals(Assert.java:1043)
+	at org.testng.Assert.assertEquals(Assert.java:1089)
+	at steps.AddToCartSteps.theCartBadgeShouldBeUpdated(AddToCartSteps.java:53)
+	at ✽.the cart badge should be updated(file:///C:/Users/Dhanakodi/eclipse-workspace/LearnCucumber/src/test/java/features/addToCart.feature:8)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User should navigate to the application...............................passed
+And User should login as "Sidhu" and "Kodi@1997"............................passed
+And User search a "Harry Potter and the Chamber of Secrets".................passed
+When User add the book to the cart..........................................passed
+Then the cart badge should be updated.......................................failed
+]]></system-out>
+</testcase>
+<testcase classname="Bookcart application demo" name="Add a product to the cart - #1.2" time="79.424">
+<system-out><![CDATA[
+Given User should navigate to the application...............................passed
+And User should login as "Dhanakodi" and "Dhana@1997".......................passed
+And User search a "The Help"................................................passed
+When User add the book to the cart..........................................passed
+Then the cart badge should be updated.......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="BookCart application demo" name="Login should be success" time="21.798">
+<system-out><![CDATA[
+Given User should navigate to the application login.........................passed
+And User clicks on the login link...........................................passed
+And User enter the username as Ortoni.......................................passed
+And User enter the password as Pass1234.....................................passed
+When User click the login button............................................passed
+Then login should be success................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="BookCart application demo" name="Login should be fail" time="22.906">
+<system-out><![CDATA[
+Given User should navigate to the application login.........................passed
+And User clicks on the login link...........................................passed
+And User enter the username as Dhanakodi....................................passed
+And User enter the password as Dhana@1997...................................passed
+When User click the login button............................................passed
+But login should be fail....................................................passed
+]]></system-out>
+</testcase>
+</testsuite>

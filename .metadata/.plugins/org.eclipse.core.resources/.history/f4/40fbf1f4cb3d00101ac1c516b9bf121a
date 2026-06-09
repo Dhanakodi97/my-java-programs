@@ -1,0 +1,80 @@
+
+package steps;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import base.DriverInstance;
+import io.cucumber.java.en.But;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class LoginSteps extends DriverInstance { // WebDriver driver; //
+	WebDriverWait wait;
+
+	@Given("User should navigate to the application login")
+	public void userShouldNavigate() { // driver = new ChromeDriver();
+		driver.get("https://bookcart.azurewebsites.net/");
+		driver.manage().window().maximize();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Given("User clicks on the login link")
+	public void userClicksOnTheLoginLink() {
+		driver.findElement(By.xpath("//span[text()=' Login ']")).click();
+
+	}
+
+	@Given("User enter the username as Sidhu")
+	public void userEnterTheUsernameAsDhana() {
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("ortoni");
+
+	}
+
+	@Given("User enter the password as Dhana@1997")
+	public void userEnterThePasswordAsPass() {
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("pass1234");
+
+	}
+
+	@When("User click the login button")
+	public void userClickTheLoginButton() {
+		driver.findElement(By.xpath("//span[text()='Login']")).click();
+
+	}
+
+	@Then("login should be success") 
+	public void loginShouldBeSuccess() {
+		WebElement text = driver.findElement(By.xpath("//span[text()=' ortoni']"));
+		wait.until(ExpectedConditions.visibilityOf(text));
+  
+  driver.quit(); 
+  }
+  
+  @Given("User enter the username as Dhanakodi") 
+  public void userEnterTheUsernameAsDhanakodi() {
+  driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(
+  "Dhanakodi");
+  
+  }
+
+	@Given("User enter the password as Dhana@1997")
+	public void userEnterThePasswordAsDhana1997() {
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("Dhana@1997");
+	}
+
+	@But("login should be fail")
+	public void loginShouldBeFail() {
+		System.out.println("Login should be Fail");
+
+		driver.quit();
+	}
+
+}

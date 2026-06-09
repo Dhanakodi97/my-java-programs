@@ -1,0 +1,86 @@
+package learning;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Flipkart {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.amazon.in/");
+		driver.manage().window().maximize();
+		WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+		search.sendKeys("Smart Watch",Keys.ENTER);
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("SmartPhone");
+		//Create a header row
+		Row header = sheet.createRow(0);
+		header.createCell(0).setCellValue("Product URL");
+		header.createCell(1).setCellValue("Product Name");
+		header.createCell(2).setCellValue("MRP");
+		header.createCell(3).setCellValue("Sales Price");
+		header.createCell(4).setCellValue("Offer");
+		int rowNum=1; //(Because of 0th row are header
+		List<WebElement> items = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+		//Iterate the items
+		for (int i = 0;i<=24;i++) {
+			WebElement item = items.get(i);
+			//Row row = sheet.createRow(rowNum++);
+			Row row = sheet.createRow(rowNum++);
+			item.click();
+			Set<String> windowHandle = driver.getWindowHandles();
+			String tab = driver.getWindowHandle();
+			for (String handle : windowHandle) {
+				if(handle.equals(tab)) {
+				driver.switchTo().window(handle); // Switch to New Tab
+				break;		
+				}
+			}
+			
+			String productUrl = driver.getCurrentUrl();
+			row.createCell(0).setCellValue(productUrl);
+			System.out.println("Product URL :" + productUrl);
+			//Getting Product Name
+			//WebDriver wait = new WebDriver();
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+			WebElement titleElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("productTitle")));
+			String productTitle = titleElement.getText();
+			row.createCell(1).setCellValue(productTitle);
+			System.out.println("Product Title: "+ productTitle);
+			//Getting MRP
+			try {
+				WebDriverWait waitMRP = new WebDriverWait(driver, Duration.ofSeconds(10));
+				WebElement productMRP = waitMRP.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='a-offscreen']")));
+				String mrp = productMRP.getText();
+				row.createCell(2).setCellValue(mrp);
+				System.out.println("MRP: " + mrp);
+			}
+			catch (Exception e) {
+				WebDriverWait waitMRP = new WebDriverWait(driver, Duration.ofSeconds(10));
+				WebElement productMRP = waitMRP.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='yRaY8j A6+E6v yKS4la']")));
+				String mrp = productMRP.getText();
+				row.createCell(2).setCellValue(mrp);
+				System.out.println("MRP: " + mrp);
+			}
+			
+		
+	
+		
+		driver.quit();
+
+	}
+
+}
+}

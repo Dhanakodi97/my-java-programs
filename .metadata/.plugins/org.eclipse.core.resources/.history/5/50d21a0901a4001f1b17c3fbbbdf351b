@@ -1,0 +1,16 @@
+package Learning;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LearnWindowHandling {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/windows");
+		String windowHandle = driver.getWindowHandle();
+		System.out.println("first Window" + windowHandle);
+
+	}
+
+}

@@ -1,0 +1,10 @@
+package firstCry;
+
+public class MailLogin {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

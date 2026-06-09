@@ -1,0 +1,23 @@
+package Learning;
+
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LearnWindowHandling {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://letcode.in/windows");
+		String windowHandle = driver.getWindowHandle();
+		System.out.println("first Window" + windowHandle);
+		driver.findElement(By.id("home")).click();
+		Set<String> windowHandle1 =  driver.getWindowHandles();
+		System.out.println(windowHandle1);
+
+	}
+
+}

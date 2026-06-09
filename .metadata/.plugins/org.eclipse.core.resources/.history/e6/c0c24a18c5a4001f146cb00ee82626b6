@@ -1,0 +1,32 @@
+package testing;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Amazon {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		//driver.manage().timeouts().implicitlyWait(1000, 1000);
+		driver.get("https://www.google.co.in/");
+		driver.manage().window().maximize();
+		driver.findElement(By.name("q")).sendKeys("flipkart",Keys.ENTER);
+		Thread.sleep(3000);
+		driver.findElement(By.className("byrV5b")).click();
+		driver.findElement(By.xpath("//span[text()='Login']")).click();
+		WebElement login = driver.findElement(By.xpath("//input[@type='text' and @class='r4vIwl BV+Dqf']"));
+		login.sendKeys("9363303261",Keys.ENTER);
+		Thread.sleep(2000);
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		//List<WebElement> test	 = wait.until(ExpectedConditions.visibilityOfAllElements((List<WebElement>) By.xpath("//label")));
+		driver.findElement(By.name("q")).sendKeys("smartphone redmi", Keys.ENTER);
+		driver.findElement(By.xpath("(//div[text()='REDMI 13C (Starshine Green, 128 GB)'])[1]")).click();
+		
+		
+		//driver.quit();
+	}
+
+}

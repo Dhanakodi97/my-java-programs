@@ -1,0 +1,36 @@
+package firstCry;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginProcess {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.firstcry.com/");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//span[text()='Login /']")).click();
+		driver.findElement(By.id("lemail")).sendKeys("9363303261");
+		driver.findElement(By.id("loginotp")).click();
+//		driver.findElement(By.id("usrname")).sendKeys("Dhanakodi");
+//		driver.findElement(By.id("usremail")).sendKeys("kingkodis143@gmail.com");
+//		driver.findElement(By.id("continueid")).click();
+		
+		Set<String> windowHandles = driver.getWindowHandles();
+		driver.get("https://mail.google.com/");
+		
+		
+		for (String string : args) {
+			
+		}
+		
+		
+		//System.out.println("The FirstCry page is logged in" );
+		
+
+	}
+
+}

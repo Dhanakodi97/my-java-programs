@@ -1,0 +1,30 @@
+package Javaselenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class Mpulse {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","drivers\\chromedrive.exe");
+	
+        // Instantiate a ChromeDriver class.
+        WebDriver driver = new ChromeDriver();
+        
+        driver.get("https://mpulse.co.in/login");
+ 
+        // Maximize the browser
+        driver.manage().window().maximize();
+        
+        driver.findElement(By.xpath("//input[@name='username']")).sendKeys("MNW3368");
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Dhana#321");
+        driver.findElement(By.xpath("//button[@name='login_form']")).click();
+        driver.findElement(By.xpath("//i[@class='fa fa-cutlery ']")).click();
+        driver.findElement(By.xpath("//i[@class='fa fa-bell ']")).click();
+        driver.findElement(By.xpath("//input[@name='submitted_menu[2024-08-23][breakfast]']")).click();
+//        driver.quit();
+
+
+	}
+}

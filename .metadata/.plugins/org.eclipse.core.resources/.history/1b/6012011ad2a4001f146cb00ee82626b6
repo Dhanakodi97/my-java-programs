@@ -1,0 +1,23 @@
+package testing;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class chatgpt {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com/search?q=chatgpt&rlz=1C1CHBF_enIN1115IN1115&oq=&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyBggCEAAYQDIGCAMQABhAMgYIBBAAGEAyBggFEEUYPDIGCAYQRRg80gEIMjIzM2owajGoAgCwAgA&sourceid=chrome&ie=UTF-8");
+		driver.findElement(By.xpath("(//h3)[1]")).click();
+		driver.findElement(By.xpath("(//a[@target='_blank'])[1]")).click();
+		WebElement message =  driver.findElement(By.xpath("//div[@class='_prosemirror-parent_15ceg_1 text-token-text-primary max-h-[25dvh] max-h-52 overflow-auto default-browser']"));
+		message.click();
+		message.sendKeys("How to learn JAVA");
+
+	}
+
+}

@@ -1,0 +1,69 @@
+
+package steps;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class AddToCartSteps extends base.DriverInstance {
+	 WebDriver driver;
+	 WebDriverWait wait;
+
+	@Given("User should navigate to the application")
+	public void userShouldNavigate() {
+		
+		// driver = new ChromeDriver();
+		driver.get("https://mpulse.co.in/login");
+		driver.manage().window().maximize();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Given("User should login as {string} and {string}")
+	public void userShouldLoginAsAnd(String username, String password) {
+		driver.findElement(By.xpath("//span[text()=' Login ']")).click();
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(password);
+		driver.findElement(By.xpath("//span[text()='Login']")).click();
+
+	}
+
+	@Given("User search a {string}")
+	public void userSearchA(String book) {
+		driver.findElement(By.xpath("//input[@placeholder='Search books or authors']")).sendKeys(book);
+		driver.findElement(By.xpath("//span[@class='mdc-list-item__primary-text']")).click();
+		// WebElement search =wait.until(ExpectedConditions.visibilityOf(searchOption));
+		// searchOption.click();
+
+	}
+
+	@When("User add the book to the cart") 
+	public void userAddTheBookToTheCart() throws InterruptedException {
+  
+  driver.findElement(By.xpath ("//span[@class='mdc-button__label']")).click();
+  //WebElement cart = wait.until(ExpectedConditions.visibilityOf(addCart));
+  Thread.sleep(2000); 
+  //addCart.click();
+  
+	}
+
+@Then("the cart badge should be updated") 
+public void theCartBadgeShouldBeUpdated() { 
+	WebElement notifyBar = driver.findElement(By.xpath("//div[@class='cdk-overlay-container']")); //
+  wait.until(ExpectedConditions.visibilityOf(notifyBar)); //
+  wait.until(ExpectedConditions.invisibilityOf(notifyBar)); String text =
+  driver.findElement(By.cssSelector("#mat-badge-content-0")).getText();
+  System.out.println("The Number of bookd : " + text);
+  Assert.assertEquals(Integer.parseInt(text)>0, true); //driver.quit(); 
+  }
+}

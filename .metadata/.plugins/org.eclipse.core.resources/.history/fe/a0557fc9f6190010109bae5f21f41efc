@@ -1,0 +1,20 @@
+package firstCry;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class MailLogin {
+
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://mail.google.com/");		
+		driver.manage().window().maximize();
+		driver.findElement(By.id("identifierId")).sendKeys("kingkodis143@gmail.com");
+		driver.findElement(By.xpath("(//div[@class='VfPpkd-RLmnJb'])[2]")).click();
+		
+		
+
+	}
+
+}
